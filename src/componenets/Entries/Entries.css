@@ -1,0 +1,8 @@
+#add-entry__buttons{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-evenly;
+}
+#entries-list{
+    margin-top: 2em;
+}

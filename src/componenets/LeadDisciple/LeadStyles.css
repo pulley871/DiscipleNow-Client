@@ -1,0 +1,37 @@
+#lead-home__header{
+    display: flex;
+    margin: .5em .5em;
+    justify-content: space-between;
+}
+#lead-home__header h3{
+    color: rgb(14, 8, 8);
+}
+#lead-home__header__avatar{
+    display: flex;
+}
+#lead-home__header__buttons{
+    display: flex;
+}
+#lead-home__header__buttons * {
+    margin: .1em;
+}
+#lead-home__header__avatar__not{
+    display: flex;
+}
+#lead-home__header__avatar__not * {
+    margin: .1em;
+}
+.lead-chart{
+    display: flex;
+    justify-content: center;
+}
+#selected-header{
+    border-top: 2px solid grey;
+    margin-top: 2em;
+    padding-top: .5em;
+    display: flex;
+    justify-content: space-between;
+}
+#selected-avatar{
+    display: flex;
+}
