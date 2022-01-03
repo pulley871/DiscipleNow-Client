@@ -1,6 +1,7 @@
 import { Avatar, Fab, ListItemAvatar, ListSubheader } from "@mui/material";
 import { useEffect, useState } from "react"
 import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -59,8 +60,11 @@ export const LeadDiscipleHome = () => {
           </Fab>
         </div>
       </div>
+      {disciples.length >0 ?
       <div id="lead-home-groups__container">
+      
       <LeadDoughnutChart disciples={Math.round(((disciples.length - needToContact.length) / disciples.length) * 100) }/>
+      
       <Box sx={{ width: '100%', maxWidth: 360, bgcolor: '#bbdefb', margin: 'auto', borderRadius: "16px", marginTop: "2em"}}>
       <nav aria-label="main mailbox folders">
         <List
@@ -112,5 +116,10 @@ export const LeadDiscipleHome = () => {
     </Box>:""}
     
     </div>
+    :
+      
+      <CircularProgress sx={{mt:2, ml:"45%"}}/>
+      
+      }
     </>)
 }
