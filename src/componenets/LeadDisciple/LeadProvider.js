@@ -1,7 +1,7 @@
 export const getSelectedDisciple = (id) =>{
     return fetch(`http://localhost:8000/selected-disciple/${id}`,
             {headers: {
-                "Authorization": "Token fa2eba9be8282d595c997ee5cd49f2ed31f65bed "
+                "Authorization": `Token ${localStorage.getItem("dn-token")}`
             }}
         )
             .then(res => res.json())
@@ -10,7 +10,7 @@ export const getSelectedDisciple = (id) =>{
 export const getLeadDiscipleDate = () => {
     return fetch("http://localhost:8000/lead-dashboard",
             {headers: {
-                "Authorization": "Token fa2eba9be8282d595c997ee5cd49f2ed31f65bed "
+                "Authorization": `Token ${localStorage.getItem("dn-token")}`
             }}
         )
             .then(res => res.json())
@@ -18,7 +18,7 @@ export const getLeadDiscipleDate = () => {
 export const ProviderRender = () =>{
     return fetch("http://localhost:8000/lead-dashboard",
             {headers: {
-                "Authorization": "Token fa2eba9be8282d595c997ee5cd49f2ed31f65bed "
+                "Authorization": `Token ${localStorage.getItem("dn-token")}`
             }}
         )
             .then(res => res.json())
@@ -31,7 +31,7 @@ export const PromoteToLead = (id) =>{
             {   
                 method: "PATCH",
                 headers: {
-                    "Authorization": `Token fa2eba9be8282d595c997ee5cd49f2ed31f65bed`,
+                    "Authorization": `Token ${localStorage.getItem("dn-token")}`,
                     "Content-Type": "application/json"
                 }
             }

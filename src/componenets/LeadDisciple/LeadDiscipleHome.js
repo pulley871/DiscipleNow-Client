@@ -1,4 +1,4 @@
-import { Avatar, Fab, ListItemAvatar, ListSubheader } from "@mui/material";
+import { Avatar, Button, Fab, ListItemAvatar, ListSubheader } from "@mui/material";
 import { useEffect, useState } from "react"
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -23,6 +23,7 @@ export const LeadDiscipleHome = () => {
     const [selectedIndex, setSelectedIndex] = useState(1);
     const [disciples, setDisciples] = useState([])
     const [needToContact, setToContact] = useState([])
+    const [noGroup, setNoGroup] = useState(true)
     const nav = useNavigate()
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
@@ -30,15 +31,20 @@ export const LeadDiscipleHome = () => {
     useEffect(()=> {
         return fetch("http://localhost:8000/lead-dashboard",
             {headers: {
-                "Authorization": "Token fa2eba9be8282d595c997ee5cd49f2ed31f65bed "
+                "Authorization": `Token ${localStorage.getItem("dn-token")}`
             }}
         )
             .then(res => res.json())
             .then((data) => {
               
                 setData(data)
-                setDisciples(data.group?.group_disciples)
-                setToContact(data.need_to_contact)
+                if(data.group.group_disciples.length>0){
+                  setDisciples(data.group?.group_disciples)
+                  setToContact(data.need_to_contact)
+
+                }else{
+                  setNoGroup(false)
+                }
 
             })
     },[])
@@ -116,9 +122,9 @@ export const LeadDiscipleHome = () => {
     </Box>:""}
     
     </div>
-    :
-      
-      <CircularProgress sx={{mt:2, ml:"45%"}}/>
+    :<>
+      {noGroup ?  <CircularProgress sx={{mt:2, ml:"45%"}}/>:<Button variant="contained" color="success" sx={{mt:2, width:"50%", left:"25%"}}>Make Group</Button>}
+     </>
       
       }
     </>)

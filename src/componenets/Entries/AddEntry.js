@@ -10,7 +10,7 @@ export const AddandEditEntry = ({edit, editEntry, setTog, render}) => {
             {   
                 method: "PUT",
                 headers: {
-                    "Authorization": `Token fa2eba9be8282d595c997ee5cd49f2ed31f65bed`,
+                    "Authorization": `Token ${localStorage.getItem("dn-token")}`,
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(object)
@@ -21,7 +21,7 @@ export const AddandEditEntry = ({edit, editEntry, setTog, render}) => {
             {   
                 method: "POST",
                 headers: {
-                    "Authorization": `Token fa2eba9be8282d595c997ee5cd49f2ed31f65bed`,
+                    "Authorization": `Token ${localStorage.getItem("dn-token")}`,
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(object)

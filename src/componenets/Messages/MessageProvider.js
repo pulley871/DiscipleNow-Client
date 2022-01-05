@@ -3,7 +3,7 @@ export const PostMessage = (message) => {
             {   
                 method: "POST",
                 headers: {
-                    "Authorization": `Token fa2eba9be8282d595c997ee5cd49f2ed31f65bed`,
+                    "Authorization": `Token ${localStorage.getItem("dn-token")}`,
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(message)

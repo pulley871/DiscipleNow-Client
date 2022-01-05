@@ -15,7 +15,7 @@ export const ApplicationView = () => {
     const checker = () =>{
         return fetch("http://localhost:8000/leadcheck",
             {headers: {
-                "Authorization": "Token fa2eba9be8282d595c997ee5cd49f2ed31f65bed "
+                "Authorization": `Token ${localStorage.getItem("dn-token")}`
             }}
         )
             .then(res => res.json())
@@ -27,12 +27,20 @@ export const ApplicationView = () => {
             nav("/home")
         }else if (pathCheck === true && pathname.startsWith("/lead") === false){
             nav("/leadhome")
+        }else if (pathname ==="/" && pathCheck === false){
+            nav("/home")
+        }else if (pathname ==="/" && pathCheck === true){
+            nav("/leadhome")
         }
     }
     
     useEffect(()=>{
         
         checker()
+        
+        if (pathname === "/"){
+            pathCheckAndRedirect()
+        }
     },[])
     useEffect(()=>{
         
