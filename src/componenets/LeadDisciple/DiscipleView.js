@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { getSelectedDisciple, ProviderRender } from "./LeadProvider"
+import { getSelectedDisciple, PromoteToLead, ProviderRender } from "./LeadProvider"
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -24,17 +24,17 @@ export const SelectedDisciple = () => {
     },[])
     return(<>
         <NotHomeNav lead={lead}/>
-        <div id="selected-header">
+        <div id="selected-header" >
             <div id="selected-avatar">
             <Avatar/>
             <h2>{disciple.user?.first_name} {disciple.user?.last_name}</h2>
             </div>
             {disciple.is_lead ? 
-                <Fab color="primary" size="medium">
+                <Fab color="primary" size="medium" id="selected-lead-icon">
                     <StarIcon />
                 </Fab>
             :
-                <Fab color="primary" size="medium">
+                <Fab color="primary" size="medium" id="selected-lead-icon" onClick={()=> PromoteToLead(disciple.id)}>
                     <StarBorderIcon />
                 </Fab>
             }

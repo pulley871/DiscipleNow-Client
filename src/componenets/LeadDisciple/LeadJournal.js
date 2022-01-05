@@ -27,7 +27,7 @@ export const LeadJournal = () => {
     return(<>
     <NotHomeNav lead={lead} />
     {addEntry ? 
-    <AddandEditEntry edit={false} setTog={setAddEntry}/>
+    <AddandEditEntry edit={false} setTog={setAddEntry} render={render}/>
     :""}
     <h3>Your Entries</h3>
     <EntriesList entries={entries}/>

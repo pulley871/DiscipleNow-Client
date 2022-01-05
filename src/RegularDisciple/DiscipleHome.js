@@ -17,7 +17,7 @@ export const DiscipleHome = () =>{
     },[])
     return (<>{disciple != {}? <>
         <DiscipleNav disciple={disciple} home={true}/>
-        {editMode ? <AddandEditEntry edit={false} setTog={setAddEntry}/>:
+        {editMode ? <AddandEditEntry edit={false} setTog={setAddEntry} render={render}/>:
         <Button variant="contained"color="success" sx={{marginTop:"1em", left:"35%"}} onClick={()=> setAddEntry(true)}>Add Entry</Button>
         }
         

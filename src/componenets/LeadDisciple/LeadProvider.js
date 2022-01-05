@@ -25,3 +25,15 @@ export const ProviderRender = () =>{
             
 
         }
+
+export const PromoteToLead = (id) =>{
+    return fetch(`http://localhost:8000/promote-disciple/${id}`,
+            {   
+                method: "PATCH",
+                headers: {
+                    "Authorization": `Token fa2eba9be8282d595c997ee5cd49f2ed31f65bed`,
+                    "Content-Type": "application/json"
+                }
+            }
+        ).then((res)=>res.json())
+}

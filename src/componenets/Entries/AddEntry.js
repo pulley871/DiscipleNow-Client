@@ -2,9 +2,35 @@ import { Button, Stack, TextField } from "@mui/material"
 import { useEffect, useState } from "react"
 import "./Entries.css"
 
-export const AddandEditEntry = ({edit, editEntry, setTog}) => {
+export const AddandEditEntry = ({edit, editEntry, setTog, render}) => {
     const [entry, setEntry] = useState({hear:"", engage:"", apply:"", respond:"", reference:""})
-
+    const addOrEditEntry = (object, edit, id=undefined) =>{
+        if (edit){
+            return fetch(`http://localhost:8000/entries/${id}`,
+            {   
+                method: "PUT",
+                headers: {
+                    "Authorization": `Token fa2eba9be8282d595c997ee5cd49f2ed31f65bed`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(object)
+            }
+        )
+        }else{
+            return fetch(`http://localhost:8000/entries`,
+            {   
+                method: "POST",
+                headers: {
+                    "Authorization": `Token fa2eba9be8282d595c997ee5cd49f2ed31f65bed`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(object)
+            }
+        ).then(()=>{
+            render()
+        })
+        }
+    }
     useEffect(()=>{
         if (edit){
             let object = {hear: editEntry.hear, engage:editEntry.engage, apply:editEntry.apply, respond:editEntry.respond, reference: editEntry.reference}
@@ -13,6 +39,20 @@ export const AddandEditEntry = ({edit, editEntry, setTog}) => {
     
     },[])
     return(<>
+        <TextField 
+                    id="outlined-textarea"
+                    label="Reference"
+                    value={entry.reference}
+                    placeholder= "Enter your Message here"
+                    multiline
+                    rows={1}
+                    sx={{mt:2}}
+                    fullWidth
+                    onChange={(event)=> {
+                        const copy = {...entry}
+                        copy.reference = event.target.value
+                        setEntry(copy)}}
+                />
         <TextField 
                     id="outlined-textarea"
                     label="Hear"
@@ -39,7 +79,7 @@ export const AddandEditEntry = ({edit, editEntry, setTog}) => {
                     fullWidth
                     onChange={(event)=> {
                         const copy = {...entry}
-                        copy.hear = event.target.value
+                        copy.engage = event.target.value
                         setEntry(copy)}}
                 />
         <TextField 
@@ -53,7 +93,7 @@ export const AddandEditEntry = ({edit, editEntry, setTog}) => {
                     fullWidth
                     onChange={(event)=> {
                         const copy = {...entry}
-                        copy.hear = event.target.value
+                        copy.apply = event.target.value
                         setEntry(copy)}}
                 />
         <TextField 
@@ -67,11 +107,19 @@ export const AddandEditEntry = ({edit, editEntry, setTog}) => {
                     fullWidth
                     onChange={(event)=> {
                         const copy = {...entry}
-                        copy.hear = event.target.value
+                        copy.respond = event.target.value
                         setEntry(copy)}}
                 />
         <div id="add-entry__buttons">
-            <Button variant="contained" color="success">Submit</Button>
+            <Button variant="contained" color="success" onClick={
+                () => {
+                    if (edit){
+                        
+                    }else{
+                        addOrEditEntry(entry,false).then(()=> setTog(false))
+                    }
+                }
+            }>Submit</Button>
             <Button variant="contained" color="error" onClick={()=>setTog(false)}>Cancel</Button>
         </div>
     </>)
