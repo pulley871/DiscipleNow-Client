@@ -5,6 +5,7 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import WestIcon from '@mui/icons-material/West';
 import MailIcon from '@mui/icons-material/Mail';
 import "../componenets/LeadDisciple/LeadStyles.css"
+import avatar from "../images/avatarcheck.jpg"
 export const DiscipleNav = ({disciple , home}) => {
     const nav = useNavigate()
     return(
@@ -14,7 +15,7 @@ export const DiscipleNav = ({disciple , home}) => {
             {home?"":<Fab color="primary" size="medium" onClick={()=> nav("/home")}>
                 <WestIcon/>
             </Fab>}
-            <Avatar size="medium" sx={{ width: 48, height: 48 }}/>
+            <Avatar size="medium" src={avatar} sx={{ width: 48, height: 48 }}/>
             {/* <h3>{lead?.user?.first_name} {lead?.user?.last_name}</h3> */}
             </div>
             <div id="lead-home__header__buttons">

@@ -1,13 +1,15 @@
 import { Avatar, Box, Divider, List, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, ListSubheader, TextField } from "@mui/material"
 import {useState, useEffect} from "react"
 import { NotHomeNav } from "../LeadDisciple/LeadNotHomeNav"
-import { getSearchedDisciple } from "./GroupProvider"
+import { addToGroup, getSearchedDisciple } from "./GroupProvider"
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
-
+import { useNavigate } from "react-router-dom";
+import avatar from "../../images/avatarcheck.jpg"
 export const AddDisciple = () => {
     const [lead, setLead] = useState({})
     const [email, setEmail] = useState("")
     const [searchResults, setSearchResults] = useState([])
+    const nav = useNavigate()
     const render = () =>{
         return fetch("http://localhost:8000/lead-dashboard",
                 {headers: {
@@ -48,9 +50,12 @@ export const AddDisciple = () => {
             {searchResults?.map((disciple)=>{
             return(
               <ListItem disablePadding >
-                <ListItemButton >
+                <ListItemButton onClick={()=>{
+                    let object = {discipleId: disciple.id}
+                    addToGroup(object).then(()=> nav("/leadhome"))
+                }}>
                 <ListItemAvatar>
-                  <Avatar/>
+                  <Avatar src={avatar}/>
                 </ListItemAvatar>
                 <ListItemText primary={`${disciple.user?.first_name} ${disciple.user?.last_name}`} />
                 <ListItemIcon><PersonAddAlt1Icon /></ListItemIcon>

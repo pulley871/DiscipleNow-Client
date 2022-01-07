@@ -2,17 +2,19 @@ import { Button, TextField } from "@mui/material"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { LoginCheck } from "./AuthProvider"
-
+import logo from "../../images/dnow.png"
+import "./auth.css"
 export const Login = () =>  {
     const [userName, setUserName] = useState()
     const [password, setPassword] = useState()
     const nav = useNavigate()
     return (<>
+        <img id="logo"src={logo} alt="Logo"/>
         <TextField
         id="outlined-textarea"
-        label="Enter Your Message Here"
+        label="UserName"
         // value={entry.respond}
-        placeholder= "Enter your Message here"
+        placeholder= "Enter your Username here"
         multiline
         rows={1}
         sx={{mt:2}}
@@ -21,9 +23,9 @@ export const Login = () =>  {
         />
         <TextField
         id="outlined-textarea"
-        label="Enter Your Message Here"
+        label="Password"
         // value={entry.respond}
-        placeholder= "Enter your Message here"
+        placeholder= "Enter your Password here"
         multiline
         rows={1}
         sx={{mt:2}}

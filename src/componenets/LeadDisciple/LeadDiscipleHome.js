@@ -18,6 +18,7 @@ import {useNavigate} from "react-router-dom"
 import MenuBookSharpIcon from '@mui/icons-material/MenuBookSharp';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import MailIcon from '@mui/icons-material/Mail';
+import avatar from "../../images/avatarcheck.jpg"
 export const LeadDiscipleHome = () => {
     const [data, setData] = useState({})
     const [selectedIndex, setSelectedIndex] = useState(1);
@@ -51,7 +52,7 @@ export const LeadDiscipleHome = () => {
     return(<>
       <div id="lead-home__header">
         <div id="lead-home__header__avatar">
-          <Avatar/>
+          <Avatar src={avatar}/>
           <h3>{data.lead_disciple?.user?.first_name} {data.lead_disciple?.user?.last_name}</h3>
           </div>
         <div id="lead-home__header__buttons">
@@ -71,7 +72,7 @@ export const LeadDiscipleHome = () => {
       
       <LeadDoughnutChart disciples={Math.round(((disciples.length - needToContact.length) / disciples.length) * 100) }/>
       
-      <Box sx={{ width: '100%', maxWidth: 360, bgcolor: '#bbdefb', margin: 'auto', borderRadius: "16px", marginTop: "2em"}}>
+      <Box sx={{ width: '100%', maxWidth: 360, bgcolor: '#bbdefb', margin: 'auto', borderRadius: "16px", marginTop: "1em"}}>
       <nav aria-label="main mailbox folders">
         <List
           subheader={<ListSubheader sx={{bgcolor: '#bbdefb', color: "black", borderRadius: "16px"}}>Your Disciples</ListSubheader>}
@@ -82,7 +83,7 @@ export const LeadDiscipleHome = () => {
               <ListItem disablePadding >
                 <ListItemButton onClick={()=>nav(`/lead/selecteddisciple/${disciple.id}`)}>
                 <ListItemAvatar>
-                  <Avatar/>
+                  <Avatar src={avatar}/>
                 </ListItemAvatar>
                 <ListItemText primary={`${disciple.user?.first_name} ${disciple.user?.last_name}`} />
                 <ListItemIcon><SettingsIcon/></ListItemIcon>
@@ -95,7 +96,7 @@ export const LeadDiscipleHome = () => {
       </nav>
     </Box>
     {needToContact.length > 0 ?
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: '#ffcdd2', margin: 'auto', borderRadius: "16px", marginTop: "2em"}}>
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: '#ffcdd2', margin: 'auto', borderRadius: "16px", marginTop: "2em", }}>
       <nav aria-label="main mailbox folders">
         <List
           subheader={<ListSubheader sx={{bgcolor: '#ffcdd2', color: "black", borderRadius: "16px"}}>Disciples Not On Track</ListSubheader>}
@@ -103,16 +104,14 @@ export const LeadDiscipleHome = () => {
           <Divider/>
           {needToContact?.map((disciple)=>{
             return(
-              <ListItem disablePadding >
-                <ListItemButton>
+              <ListItem disablePadding sx={{mt:1.5, ml:2}}>
+                
                 <ListItemAvatar>
-                  <Avatar/>
+                  <Avatar src={avatar}/>
                 </ListItemAvatar>
                 <ListItemText primary={`${disciple.user?.first_name} ${disciple.user?.last_name}`} />
-                <ListItemIcon>
-                  <SendIcon/>
-                </ListItemIcon>
-                </ListItemButton>
+                
+                
               </ListItem>
             )
           })}

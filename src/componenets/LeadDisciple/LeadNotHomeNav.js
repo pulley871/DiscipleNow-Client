@@ -4,6 +4,8 @@ import MenuBookSharpIcon from '@mui/icons-material/MenuBookSharp';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import WestIcon from '@mui/icons-material/West';
 import MailIcon from '@mui/icons-material/Mail';
+import avatar from "../../images/avatarcheck.jpg"
+
 import "./LeadStyles.css"
 export const NotHomeNav = ({lead}) => {
     const nav = useNavigate()
@@ -14,7 +16,7 @@ export const NotHomeNav = ({lead}) => {
             <Fab color="primary" size="medium" onClick={()=> nav("/leadhome")}>
                 <WestIcon/>
             </Fab>
-            <Avatar size="medium" sx={{ width: 48, height: 48 }}/>
+            <Avatar size="medium" src={avatar}sx={{ width: 48, height: 48 }}/>
             {/* <h3>{lead?.user?.first_name} {lead?.user?.last_name}</h3> */}
             </div>
             <div id="lead-home__header__buttons">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
+import { Footer } from "../footer/Footer"
 import { ApplicationView } from "./Appview"
 import { LoginView } from "./LoginView"
 
@@ -19,7 +20,10 @@ export const DiscipleNow = () => {
     },[])
     return (<>
         {localStorage.getItem("dn-token")?
+        <>
         <ApplicationView/>
+        <Footer/>
+        </>
         :<LoginView />}
     </>)
 }
