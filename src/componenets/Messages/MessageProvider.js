@@ -10,3 +10,15 @@ export const PostMessage = (message) => {
             }
         )
 }
+export const UpdateReadStatus = (id) => {
+    return fetch(`http://localhost:8000/messages/${id}`,
+            {   
+                method: "PATCH",
+                headers: {
+                    "Authorization": `Token ${localStorage.getItem("dn-token")}`,
+                    "Content-Type": "application/json"
+                }
+                
+            }
+        )
+}

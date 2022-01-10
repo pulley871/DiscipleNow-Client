@@ -11,7 +11,7 @@ export const Footer = () => {
     const nav = useNavigate()
       
     return (
-        <Box sx={{ height:"2.5em",width: "100%",position: 'fixed', bottom: 0, left: 0, right: 0, marginTop:2}}>
+        <Box sx={{ height:"2.5em",width: "100%",position: 'absolute', bottom: 10, left: 0, right: 0,}}>
         <BottomNavigation
             showLabels
             value=""

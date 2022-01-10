@@ -4,9 +4,10 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Alert, Avatar, Divider, Fab } from "@mui/material";
+import { Alert, Avatar, Checkbox, Divider, Fab, FormControlLabel } from "@mui/material";
 import { useState } from 'react';
-export const MessageList = ({messages}) => {
+import { UpdateReadStatus } from './MessageProvider';
+export const MessageList = ({messages, render}) => {
 
     const [expanded, setExpanded] = useState(false)
     const handleChange = (panel) => (event, isExpanded) => {
@@ -19,7 +20,12 @@ export const MessageList = ({messages}) => {
         {messages?.map(message => {
             
             return(
-                <Accordion expanded={expanded === `message${message.id}` } onChange={handleChange(`message${message.id}`)}
+                <Accordion expanded={expanded === `message${message.id}` } onChange={
+                    
+                    
+                        handleChange(`message${message.id}`)
+                    
+                    }
                 sx={{ width: '100%', maxWidth: 360, bgcolor: message.is_read?'#bbdefb':"#ff4569", margin: 'auto'}}
                 >
                     <AccordionSummary
@@ -35,6 +41,16 @@ export const MessageList = ({messages}) => {
                     <AccordionDetails >
                     <Typography >
                         {message.body}
+                        <Divider/>
+                        {message.is_read? 
+                        <FormControlLabel disabled control={<Checkbox defaultChecked/>} label="Read"/>
+                        :
+                        <FormControlLabel  control={<Checkbox onChange={()=> {
+                            UpdateReadStatus(message.id)
+                            .then(()=>render())
+                        }}/>} label="Read"/>
+                        }
+                        
                     </Typography>
                     </AccordionDetails>
                 </Accordion>

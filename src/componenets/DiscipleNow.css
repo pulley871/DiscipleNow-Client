@@ -1,0 +1,16 @@
+#page-container {
+  position: relative;
+  min-height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#content-wrap {
+  padding-bottom: 4rem;
+  overflow-x: scroll;
+  flex-basis: 80%;
+}
+#footer {
+  flex-basis: 10%;
+}

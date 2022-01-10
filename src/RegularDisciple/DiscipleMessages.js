@@ -17,7 +17,7 @@ export const DiscipleMessages = () => {
     {disciple != {}? <>
         <DiscipleNav disciple={disciple} home={false}/>
         {disciple.messages?.length > 0 ? 
-        <MessageList messages={disciple.messages} />
+        <MessageList messages={disciple.messages} render={render}/>
         :<h3 sx={{mt:2}}>You have no messages</h3>}
         </>
         :""}

@@ -25,6 +25,7 @@ export const LeadDiscipleHome = () => {
     const [disciples, setDisciples] = useState([])
     const [needToContact, setToContact] = useState([])
     const [noGroup, setNoGroup] = useState(true)
+    const [loading, setLoading] = useState(false)
     const nav = useNavigate()
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
@@ -37,11 +38,16 @@ export const LeadDiscipleHome = () => {
         )
             .then(res => res.json())
             .then((data) => {
-              
+                
                 setData(data)
-                if(data.group.group_disciples.length>0){
-                  setDisciples(data.group?.group_disciples)
-                  setToContact(data.need_to_contact)
+                if("group" in data){
+                  if (data.group.group_disciples.length > 0){
+                    setDisciples(data.group?.group_disciples)
+                    setToContact(data.need_to_contact)
+
+                  }else{
+
+                  }
 
                 }else{
                   setNoGroup(false)

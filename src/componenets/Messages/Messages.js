@@ -12,18 +12,21 @@ export const Messages = () => {
     const [toggle, setToggle] = useState(false)
     const [disciplesList, setList] = useState([])
     const [messages, setMessages] = useState([])
-    useEffect(()=>{
+    const render = () => {
         ProviderRender().then(data=>{
             setLead(data.lead_disciple)
             setList(data.group.group_disciples)
             setMessages(data.lead_disciple.messages)
             
         })
+    }
+    useEffect(()=>{
+        render()
     },[])
     return(<>
     <NotHomeNav lead={lead}/>
     {toggle? <AddMessage disciples={disciplesList} setTog={setToggle}/>:""}
     {toggle? "":<Button onClick={()=> setToggle(true)} variant="contained" color="success"sx={{width:"100%", mt:4}}>Compose</Button>}
-    <MessageList messages={messages}/>
+    <MessageList messages={messages} render={render}/>
     </>)
 }

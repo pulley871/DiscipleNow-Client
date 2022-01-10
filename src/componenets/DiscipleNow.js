@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { Footer } from "../footer/Footer"
 import { ApplicationView } from "./Appview"
 import { LoginView } from "./LoginView"
-
+import "./DiscipleNow.css"
 export const DiscipleNow = () => {
     const nav = useNavigate()
     const {path} = useLocation()
@@ -20,10 +20,15 @@ export const DiscipleNow = () => {
     },[])
     return (<>
         {localStorage.getItem("dn-token")?
-        <>
-        <ApplicationView/>
-        <Footer/>
-        </>
+        <div id="page-container">
+            <div id="content-wrap">
+                <ApplicationView/>
+            </div>
+            <div id="footer">
+                <Footer/>
+            </div>
+        
+        </div>
         :<LoginView />}
     </>)
 }
